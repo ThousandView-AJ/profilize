@@ -5,57 +5,62 @@ export const PersonalField = ({ personalDetails, setPersonalDetails }) => {
     useState(personalDetails);
 
   return (
-    <div>
-      <h2>Personal Details</h2>
-      <form>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={localPersonalDetails.name}
-          onChange={(e) =>
-            setLocalPersonalDetails({
-              ...localPersonalDetails,
-              name: e.target.value,
-            })
-          }
-        />
-
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={localPersonalDetails.email}
-          onChange={(e) =>
-            setLocalPersonalDetails({
-              ...localPersonalDetails,
-              email: e.target.value,
-            })
-          }
-        />
-
-        <label htmlFor="phone">Phone:</label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          value={localPersonalDetails.phone}
-          onChange={(e) =>
-            setLocalPersonalDetails({
-              ...localPersonalDetails,
-              phone: e.target.value,
-            })
-          }
-        />
-
+    <div className="form-section">
+      <div className="form-header">
+        <h2>Personal Details</h2>
         <button
           type="button"
           onClick={() => setPersonalDetails(localPersonalDetails)}
         >
           Submit
         </button>
+      </div>
+      <form>
+        <div className="form-group">
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={localPersonalDetails.name}
+            onChange={(e) =>
+              setLocalPersonalDetails({
+                ...localPersonalDetails,
+                name: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={localPersonalDetails.email}
+            onChange={(e) =>
+              setLocalPersonalDetails({
+                ...localPersonalDetails,
+                email: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phone">Phone:</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={localPersonalDetails.phone}
+            onChange={(e) =>
+              setLocalPersonalDetails({
+                ...localPersonalDetails,
+                phone: e.target.value,
+              })
+            }
+          />
+        </div>
       </form>
     </div>
   );

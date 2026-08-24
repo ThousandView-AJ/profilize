@@ -1,0 +1,91 @@
+.formPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  overflow-y: auto;
+  background: var(--editor-bg);
+}
+
+.form-section {
+  background: var(--editor-surface);
+  border: 1px solid var(--editor-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.form-section h2 {
+  font-size: 18px;
+  color: var(--editor-text);
+  margin: 0;
+}
+
+.formPanel form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.formPanel label {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--editor-label);
+  width: 5rem;
+}
+
+.formPanel input,
+.formPanel textarea {
+  height: 2rem;
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--editor-bg);
+  border: 1px solid var(--editor-border);
+  border-radius: var(--radius-sm);
+  color: var(--editor-text);
+  font-size: 14px;
+  font-family: var(--sans);
+  transition: border-color 0.15s ease;
+}
+
+.formPanel input:focus,
+.formPanel textarea:focus {
+  outline: none;
+  border-color: var(--amber);
+}
+
+.formPanel .form-group textarea {
+  resize: vertical;
+  min-height: 5rem;
+}
+
+.formPanel button {
+  padding: 6px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--amber);
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.formPanel button:hover {
+  background: var(--amber-hover);
+}

@@ -27,7 +27,6 @@ export function Profilize() {
         <h1 className="header">Profilize</h1>
       </header>
       <div className="formPanel">
-        panel
         <PersonalField
           personalDetails={personalDetails}
           setPersonalDetails={setPersonalDetails}
@@ -46,7 +45,7 @@ export function Profilize() {
         />
       </div>
       <div className="previewPanel">
-        <h2>Preview</h2>
+        {/* <h2>Preview</h2> */}
         <PersonalView personalDetails={personalDetails} />
         <EducationView educationDetails={educationDetails} />
         <ExperienceView experienceDetails={experienceDetails} />
