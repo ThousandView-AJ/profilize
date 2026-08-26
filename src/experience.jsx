@@ -11,6 +11,10 @@ function AddExperienceForm({ entry, experienceDetails, setExperienceDetails }) {
     );
   };
 
+  const handleDelete = () => {
+    setExperienceDetails(experienceDetails.filter((e) => e.id !== entry.id));
+  };
+
   return (
     <form>
       <div className="form-group">
@@ -61,9 +65,14 @@ function AddExperienceForm({ entry, experienceDetails, setExperienceDetails }) {
         />
       </div>
 
-      <button type="button" onClick={handleSubmit}>
-        Submit
-      </button>
+      <div className="form-buttons">
+        <button type="button" onClick={handleDelete}>
+          Delete
+        </button>
+        <button type="button" onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
     </form>
   );
 }

@@ -10,6 +10,9 @@ function AddEducationForm({ entry, educationDetails, setEducationDetails }) {
       )
     );
   };
+  const handleDelete = () => {
+    setEducationDetails(educationDetails.filter((e) => e.id !== entry.id));
+  };
 
   return (
     <form>
@@ -60,10 +63,15 @@ function AddEducationForm({ entry, educationDetails, setEducationDetails }) {
           }
         />
       </div>
+      <div className="form-buttons">
+      <button type="button" onClick={handleDelete}>
+        Delete
+      </button>
 
       <button type="button" onClick={handleSubmit}>
         Submit
       </button>
+      </div>
     </form>
   );
 }
