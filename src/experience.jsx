@@ -1,88 +1,128 @@
 import { useState } from 'react';
 
+function AddExperienceForm({ entry, experienceDetails, setExperienceDetails }) {
+  const [localExperienceDetails, setLocalExperienceDetails] = useState(entry);
+
+  const handleSubmit = () => {
+    setExperienceDetails(
+      experienceDetails.map((e) =>
+        e.id === entry.id ? localExperienceDetails : e
+      )
+    );
+  };
+
+  return (
+    <form>
+      <div className="form-group">
+        <label htmlFor="company">Company:</label>
+        <input
+          type="text"
+          id="company"
+          name="company"
+          value={localExperienceDetails.company}
+          onChange={(e) =>
+            setLocalExperienceDetails({
+              ...localExperienceDetails,
+              company: e.target.value,
+            })
+          }
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="role">Role:</label>
+        <input
+          type="text"
+          id="role"
+          name="role"
+          value={localExperienceDetails.role}
+          onChange={(e) =>
+            setLocalExperienceDetails({
+              ...localExperienceDetails,
+              role: e.target.value,
+            })
+          }
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="duration">Duration:</label>
+        <input
+          type="text"
+          id="duration"
+          name="duration"
+          value={localExperienceDetails.duration}
+          onChange={(e) =>
+            setLocalExperienceDetails({
+              ...localExperienceDetails,
+              duration: e.target.value,
+            })
+          }
+        />
+      </div>
+
+      <button type="button" onClick={handleSubmit}>
+        Submit
+      </button>
+    </form>
+  );
+}
+
 export const ExperienceField = ({
   experienceDetails,
   setExperienceDetails,
 }) => {
-  const [localExperienceDetails, setLocalExperienceDetails] =
-    useState(experienceDetails);
-
   return (
     <div className="form-section">
       <div className="form-header">
         <h2>Experience</h2>
         <button
+          className="AddButton"
           type="button"
-          onClick={() => setExperienceDetails(localExperienceDetails)}
+          onClick={() =>
+            setExperienceDetails([
+              ...experienceDetails,
+              {
+                id: crypto.randomUUID(),
+                company: '',
+                role: '',
+                duration: '',
+              },
+            ])
+          }
         >
-          Submit
+          Add Experience
         </button>
       </div>
-      <form>
-        <div className="form-group">
-          <label htmlFor="company">Company:</label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            value={localExperienceDetails.company}
-            onChange={(e) =>
-              setLocalExperienceDetails({
-                ...localExperienceDetails,
-                company: e.target.value,
-              })
-            }
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="role">Role:</label>
-          <input
-            type="text"
-            id="role"
-            name="role"
-            value={localExperienceDetails.role}
-            onChange={(e) =>
-              setLocalExperienceDetails({
-                ...localExperienceDetails,
-                role: e.target.value,
-              })
-            }
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="duration">Duration:</label>
-          <input
-            type="text"
-            id="duration"
-            name="duration"
-            value={localExperienceDetails.duration}
-            onChange={(e) =>
-              setLocalExperienceDetails({
-                ...localExperienceDetails,
-                duration: e.target.value,
-              })
-            }
-          />
-        </div>
-      </form>
+      {experienceDetails.map((element) => (
+        <AddExperienceForm
+          key={element.id}
+          entry={element}
+          experienceDetails={experienceDetails}
+          setExperienceDetails={setExperienceDetails}
+        />
+      ))}
     </div>
   );
 };
 
 export function ExperienceView({ experienceDetails }) {
   return (
-    <div className="experienceView">
+    <>
       <h2>Experience</h2>
-      <p>
-        <strong>Company:</strong> {experienceDetails.company}
-      </p>
-      <p>
-        <strong>Role:</strong> {experienceDetails.role}
-      </p>
-      <p>
-        <strong>Duration:</strong> {experienceDetails.duration}
-      </p>
-    </div>
+      {experienceDetails.map((element) => (
+        <div key={element.id} className="experienceView">
+          <p>
+            <strong>Company:</strong> {element.company}
+          </p>
+          <p>
+            <strong>Role:</strong> {element.role}
+          </p>
+          <p>
+            <strong>Duration:</strong> {element.duration}
+          </p>
+        </div>
+      ))}
+    </>
   );
 }
