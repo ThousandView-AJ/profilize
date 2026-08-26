@@ -10,11 +10,7 @@ export function Profilize() {
     email: '',
     phone: '',
   });
-  const [educationDetails, setEducationDetails] = useState({
-    school: '',
-    degree: '',
-    year: '',
-  });
+  const [educationDetails, setEducationDetails] = useState([]);
   const [experienceDetails, setExperienceDetails] = useState({
     company: '',
     role: '',

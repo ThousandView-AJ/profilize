@@ -1,85 +1,125 @@
 import { useState } from 'react';
 
-export const EducationField = ({ educationDetails, setEducationDetails }) => {
-  const [localEducationDetails, setLocalEducationDetails] =
-    useState(educationDetails);
+function AddEducationForm({ entry, educationDetails, setEducationDetails }) {
+  const [localEducationDetails, setLocalEducationDetails] = useState(entry);
 
+  const handleSubmit = () => {
+    setEducationDetails(
+      educationDetails.map((e) =>
+        e.id === entry.id ? localEducationDetails : e
+      )
+    );
+  };
+
+  return (
+    <form>
+      <div className="form-group">
+        <label htmlFor="institution">Institution:</label>
+        <input
+          type="text"
+          id="institution"
+          name="institution"
+          value={localEducationDetails.institution}
+          onChange={(e) =>
+            setLocalEducationDetails({
+              ...localEducationDetails,
+              institution: e.target.value,
+            })
+          }
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="degree">Degree:</label>
+        <input
+          type="text"
+          id="degree"
+          name="degree"
+          value={localEducationDetails.degree}
+          onChange={(e) =>
+            setLocalEducationDetails({
+              ...localEducationDetails,
+              degree: e.target.value,
+            })
+          }
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="year">Year:</label>
+        <input
+          type="text"
+          id="year"
+          name="year"
+          value={localEducationDetails.year}
+          onChange={(e) =>
+            setLocalEducationDetails({
+              ...localEducationDetails,
+              year: e.target.value,
+            })
+          }
+        />
+      </div>
+
+      <button type="button" onClick={handleSubmit}>
+        Submit
+      </button>
+    </form>
+  );
+}
+
+export const EducationField = ({ educationDetails, setEducationDetails }) => {
   return (
     <div className="form-section">
       <div className="form-header">
         <h2>Education</h2>
         <button
+          className="AddButton"
           type="button"
-          onClick={() => setEducationDetails(localEducationDetails)}
+          onClick={() =>
+            setEducationDetails([
+              ...educationDetails,
+              {
+                id: crypto.randomUUID(),
+                institution: '',
+                degree: '',
+                year: '',
+              },
+            ])
+          }
         >
-          Submit
+          Add Education
         </button>
       </div>
-      <form>
-        <div className="form-group">
-          <label htmlFor="school">School/College:</label>
-          <input
-            type="text"
-            id="school"
-            name="school"
-            value={localEducationDetails.school}
-            onChange={(e) =>
-              setLocalEducationDetails({
-                ...localEducationDetails,
-                school: e.target.value,
-              })
-            }
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="degree">Degree:</label>
-          <input
-            type="text"
-            id="degree"
-            name="degree"
-            value={localEducationDetails.degree}
-            onChange={(e) =>
-              setLocalEducationDetails({
-                ...localEducationDetails,
-                degree: e.target.value,
-              })
-            }
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="year">Year:</label>
-          <input
-            type="text"
-            id="year"
-            name="year"
-            value={localEducationDetails.year}
-            onChange={(e) =>
-              setLocalEducationDetails({
-                ...localEducationDetails,
-                year: e.target.value,
-              })
-            }
-          />
-        </div>
-      </form>
+      {educationDetails.map((element) => (
+        <AddEducationForm
+          key={element.id}
+          entry={element}
+          educationDetails={educationDetails}
+          setEducationDetails={setEducationDetails}
+        />
+      ))}
     </div>
   );
 };
 
 export function EducationView({ educationDetails }) {
   return (
-    <div className="educationView">
+    <>
       <h2>Education</h2>
-      <p>
-        <strong>School:</strong> {educationDetails.school}
-      </p>
-      <p>
-        <strong>Degree:</strong> {educationDetails.degree}
-      </p>
-      <p>
-        <strong>Year:</strong> {educationDetails.year}
-      </p>
-    </div>
+      {educationDetails.map((element) => (
+        <div key={element.id} className="educationView">
+          <p>
+            <strong>Institution:</strong> {element.institution}
+          </p>
+          <p>
+            <strong>Degree:</strong> {element.degree}
+          </p>
+          <p>
+            <strong>Year:</strong> {element.year}
+          </p>
+        </div>
+      ))}
+    </>
   );
 }
