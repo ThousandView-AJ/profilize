@@ -99,11 +99,13 @@ body {
   padding: 0 var(--space-4);
   background: var(--editor-surface);
   border-bottom: 1px solid var(--editor-border);
+  justify-content: space-between;
+  box-shadow: var(--shadow);
 }
 
 .pageHeader h1 {
   font-family: var(--mono);
-  font-size: 30px;
+  font-size: 2.6rem;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -171,4 +173,35 @@ textarea {
 img {
   max-width: 100%;
   display: block;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .previewPanel,
+  .previewPanel * {
+    visibility: visible;
+  }
+
+  .previewPanel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .pageHeader,
+  .formPanel,
+  .downloadBtn {
+    display: none;
+  }
+}
+.downloadBtn {
+  padding: 6px 16px;
+  width: 18rem;
+  height: 3rem;
 }

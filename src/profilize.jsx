@@ -17,6 +17,9 @@ export function Profilize() {
     <>
       <header className="pageHeader">
         <h1 className="header">Profilize</h1>
+        <button className="downloadBtn" onClick={() => window.print()}>
+          Download PDF
+        </button>
       </header>
       <div className="formPanel">
         <PersonalField
@@ -38,6 +41,7 @@ export function Profilize() {
       </div>
       <div className="previewPanel">
         {/* <h2>Preview</h2> */}
+
         <PersonalView personalDetails={personalDetails} />
         <EducationView educationDetails={educationDetails} />
         <ExperienceView experienceDetails={experienceDetails} />
